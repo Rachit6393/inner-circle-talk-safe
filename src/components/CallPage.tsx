@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import { ArrowLeft, Phone, PhoneOff, Video, VideoOff, Mic, MicOff, Volume2 } from 'lucide-react';
 import type { User } from '../pages/Index';
@@ -32,9 +31,9 @@ const CallPage: React.FC<CallPageProps> = ({ currentUser, isDarkMode, onBack }) 
   };
 
   const callHistory = [
-    { id: 1, type: 'video', duration: '12:34', timestamp: '2 hours ago', incoming: false },
-    { id: 2, type: 'voice', duration: '05:42', timestamp: 'Yesterday', incoming: true },
-    { id: 3, type: 'video', duration: '25:18', timestamp: '2 days ago', incoming: false },
+    { id: 1, type: 'video' as const, duration: '12:34', timestamp: '2 hours ago', incoming: false },
+    { id: 2, type: 'voice' as const, duration: '05:42', timestamp: 'Yesterday', incoming: true },
+    { id: 3, type: 'video' as const, duration: '25:18', timestamp: '2 days ago', incoming: false },
   ];
 
   if (isCallActive) {

@@ -1,6 +1,5 @@
-
 import React from 'react';
-import { MessageSquare, Folder, Call, Settings, Smartphone, Sparkles } from 'lucide-react';
+import { MessageSquare, Folder, Phone, Settings, Smartphone, Sparkles } from 'lucide-react';
 import type { User } from '../pages/Index';
 
 interface HomePageProps {
@@ -20,7 +19,7 @@ const HomePage: React.FC<HomePageProps> = ({ currentUser, isDarkMode, onNavigate
   const navigationItems = [
     { id: 'chat', icon: MessageSquare, label: 'Chats', description: 'End-to-end encrypted messaging' },
     { id: 'media', icon: Folder, label: 'Media', description: 'Shared photos and files' },
-    { id: 'call', icon: Call, label: 'Call', description: 'Voice and video calls' },
+    { id: 'call', icon: Phone, label: 'Call', description: 'Voice and video calls' },
     { id: 'settings', icon: Settings, label: 'Settings', description: 'App preferences' }
   ];
 
