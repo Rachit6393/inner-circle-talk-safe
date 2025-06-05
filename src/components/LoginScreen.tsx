@@ -1,6 +1,6 @@
 
 import React, { useState } from 'react';
-import { Lock, User, Smartphone } from 'lucide-react';
+import { Lock, User, Shield } from 'lucide-react';
 
 interface LoginScreenProps {
   onLogin: (username: string, password: string) => boolean;
@@ -18,97 +18,106 @@ const LoginScreen: React.FC<LoginScreenProps> = ({ onLogin, isDarkMode }) => {
     
     const success = onLogin(username, password);
     if (!success) {
-      setError('Access Denied. This app is private.');
+      setError('Access denied');
     }
   };
 
   return (
-    <div className={`min-h-screen flex items-center justify-center px-4 ${
-      isDarkMode ? 'bg-gradient-to-br from-purple-900 via-gray-900 to-black' : 'bg-gradient-to-br from-purple-100 via-white to-gray-100'
+    <div className={`min-h-screen flex items-center justify-center px-6 ${
+      isDarkMode 
+        ? 'bg-gradient-to-br from-gray-900 via-gray-800 to-black' 
+        : 'bg-gradient-to-br from-gray-50 via-white to-gray-100'
     }`}>
-      <div className={`w-full max-w-md p-8 rounded-2xl shadow-2xl ${
-        isDarkMode ? 'bg-gray-800 border border-purple-700' : 'bg-white border border-purple-200'
-      }`}>
-        <div className="text-center mb-8">
-          <div className={`inline-flex items-center justify-center w-16 h-16 rounded-full mb-4 ${
-            isDarkMode ? 'bg-purple-700' : 'bg-purple-600'
+      <div className="w-full max-w-sm animate-fade-in">
+        {/* Logo Section */}
+        <div className="text-center mb-12">
+          <div className={`inline-flex items-center justify-center w-20 h-20 rounded-2xl mb-6 ${
+            isDarkMode ? 'bg-white/10 backdrop-blur-xl' : 'bg-gray-900/5 backdrop-blur-xl'
           }`}>
-            <Smartphone className="w-8 h-8 text-white" />
+            <Shield className={`w-10 h-10 ${isDarkMode ? 'text-white' : 'text-gray-900'}`} />
           </div>
-          <h1 className={`text-3xl font-bold mb-2 ${isDarkMode ? 'text-white' : 'text-gray-900'}`}>
+          <h1 className={`text-3xl font-light mb-2 tracking-wide ${
+            isDarkMode ? 'text-white' : 'text-gray-900'
+          }`}>
             PrivyTalk
           </h1>
-          <p className={`text-sm ${isDarkMode ? 'text-gray-400' : 'text-gray-600'}`}>
-            Secure • Private • Encrypted
+          <p className={`text-sm font-light ${
+            isDarkMode ? 'text-gray-400' : 'text-gray-600'
+          }`}>
+            Secure communication platform
           </p>
         </div>
 
-        <form onSubmit={handleSubmit} className="space-y-6">
-          <div>
-            <label className={`block text-sm font-medium mb-2 ${isDarkMode ? 'text-gray-300' : 'text-gray-700'}`}>
-              Username
-            </label>
+        {/* Form */}
+        <form onSubmit={handleSubmit} className="space-y-8">
+          <div className="space-y-6">
             <div className="relative">
-              <User className={`absolute left-3 top-1/2 transform -translate-y-1/2 w-5 h-5 ${
+              <User className={`absolute left-0 top-3 w-5 h-5 ${
                 isDarkMode ? 'text-gray-400' : 'text-gray-500'
               }`} />
               <input
                 type="text"
                 value={username}
                 onChange={(e) => setUsername(e.target.value)}
-                className={`w-full pl-10 pr-4 py-3 rounded-lg border focus:ring-2 focus:ring-purple-500 focus:border-transparent ${
+                className={`w-full pl-8 minimal-input ${
                   isDarkMode 
-                    ? 'bg-gray-700 border-gray-600 text-white placeholder-gray-400' 
-                    : 'bg-white border-gray-300 text-gray-900 placeholder-gray-500'
+                    ? 'text-white placeholder-gray-400' 
+                    : 'text-gray-900 placeholder-gray-500'
                 }`}
-                placeholder="Enter your username"
+                placeholder="Username"
                 required
               />
             </div>
-          </div>
 
-          <div>
-            <label className={`block text-sm font-medium mb-2 ${isDarkMode ? 'text-gray-300' : 'text-gray-700'}`}>
-              Password
-            </label>
             <div className="relative">
-              <Lock className={`absolute left-3 top-1/2 transform -translate-y-1/2 w-5 h-5 ${
+              <Lock className={`absolute left-0 top-3 w-5 h-5 ${
                 isDarkMode ? 'text-gray-400' : 'text-gray-500'
               }`} />
               <input
                 type="password"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
-                className={`w-full pl-10 pr-4 py-3 rounded-lg border focus:ring-2 focus:ring-purple-500 focus:border-transparent ${
+                className={`w-full pl-8 minimal-input ${
                   isDarkMode 
-                    ? 'bg-gray-700 border-gray-600 text-white placeholder-gray-400' 
-                    : 'bg-white border-gray-300 text-gray-900 placeholder-gray-500'
+                    ? 'text-white placeholder-gray-400' 
+                    : 'text-gray-900 placeholder-gray-500'
                 }`}
-                placeholder="Enter your password"
+                placeholder="Password"
                 required
               />
             </div>
           </div>
 
           {error && (
-            <div className="p-3 bg-red-500 bg-opacity-20 border border-red-500 rounded-lg">
-              <p className="text-red-400 text-sm font-medium">{error}</p>
+            <div className={`p-4 rounded-xl text-sm font-medium ${
+              isDarkMode 
+                ? 'bg-red-500/10 text-red-400 border border-red-500/20' 
+                : 'bg-red-50 text-red-600 border border-red-200'
+            }`}>
+              {error}
             </div>
           )}
 
           <button
             type="submit"
-            className="w-full bg-purple-600 hover:bg-purple-700 text-white font-medium py-3 px-4 rounded-lg transition-colors duration-200 transform hover:scale-105"
+            className={`w-full py-4 rounded-xl font-medium transition-all duration-200 ${
+              isDarkMode
+                ? 'bg-white text-gray-900 hover:bg-gray-100'
+                : 'bg-gray-900 text-white hover:bg-gray-800'
+            } transform hover:scale-[1.02] active:scale-[0.98]`}
           >
             Sign In
           </button>
         </form>
 
-        <div className={`mt-8 pt-6 border-t text-center ${
-          isDarkMode ? 'border-gray-700 text-gray-400' : 'border-gray-200 text-gray-600'
+        {/* Footer */}
+        <div className={`mt-12 pt-8 border-t text-center ${
+          isDarkMode 
+            ? 'border-gray-800 text-gray-500' 
+            : 'border-gray-200 text-gray-600'
         }`}>
-          <p className="text-xs">
-            🔐 End-to-end encrypted • For authorized users only
+          <p className="text-xs font-light">
+            End-to-end encrypted • Authorized access only
           </p>
         </div>
       </div>
