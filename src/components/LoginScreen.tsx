@@ -25,16 +25,16 @@ const LoginScreen: React.FC<LoginScreenProps> = ({ onLogin, isDarkMode }) => {
   return (
     <div className={`min-h-screen flex items-center justify-center px-6 ${
       isDarkMode 
-        ? 'bg-gradient-to-br from-gray-900 via-gray-800 to-black' 
-        : 'bg-gradient-to-br from-gray-50 via-white to-gray-100'
+        ? 'bg-gradient-to-br from-gray-900 via-teal-900/20 to-black' 
+        : 'bg-gradient-to-br from-teal-50 via-white to-teal-100'
     }`}>
       <div className="w-full max-w-sm animate-fade-in">
         {/* Logo Section */}
         <div className="text-center mb-12">
           <div className={`inline-flex items-center justify-center w-20 h-20 rounded-2xl mb-6 ${
-            isDarkMode ? 'bg-white/10 backdrop-blur-xl' : 'bg-gray-900/5 backdrop-blur-xl'
+            isDarkMode ? 'bg-primary/20 backdrop-blur-xl border border-primary/30' : 'bg-primary/10 backdrop-blur-xl border border-primary/20'
           }`}>
-            <Shield className={`w-10 h-10 ${isDarkMode ? 'text-white' : 'text-gray-900'}`} />
+            <Shield className={`w-10 h-10 ${isDarkMode ? 'text-primary' : 'text-primary'}`} />
           </div>
           <h1 className={`text-3xl font-light mb-2 tracking-wide ${
             isDarkMode ? 'text-white' : 'text-gray-900'
@@ -100,11 +100,7 @@ const LoginScreen: React.FC<LoginScreenProps> = ({ onLogin, isDarkMode }) => {
 
           <button
             type="submit"
-            className={`w-full py-4 rounded-xl font-medium transition-all duration-200 ${
-              isDarkMode
-                ? 'bg-white text-gray-900 hover:bg-gray-100'
-                : 'bg-gray-900 text-white hover:bg-gray-800'
-            } transform hover:scale-[1.02] active:scale-[0.98]`}
+            className={`w-full py-4 rounded-xl font-medium transition-all duration-200 bg-primary text-primary-foreground hover:bg-primary/90 transform hover:scale-[1.02] active:scale-[0.98]`}
           >
             Sign In
           </button>
